@@ -1,14 +1,14 @@
 import React from "react";
-import { Drawer, Descriptions, Image } from "antd";
+import { Drawer, Descriptions, Image, Tag } from "antd";
 
-type DetailBookProps = {
-  dataViewDetail: IBookTable | null;
+type DetailUserProps = {
+  dataViewDetail: IUserTable | null;
   setOpenDetail: (open: boolean) => void;
   openDetail: boolean;
-  setDataViewDetail: (data: IBookTable | null) => void;
+  setDataViewDetail: (data: IUserTable | null) => void;
 };
 
-const DetailUser: React.FC<DetailBookProps> = ({
+const DetailUser: React.FC<DetailUserProps> = ({
   openDetail,
   setOpenDetail,
   dataViewDetail,
@@ -21,27 +21,40 @@ const DetailUser: React.FC<DetailBookProps> = ({
 
   return (
     <Drawer
-      title="Thông tin Book"
+      title="Chức năng xem chi tiết"
       width={700}
       onClose={onClose}
       open={openDetail}
     >
       {dataViewDetail ? (
-        <Descriptions column={2} bordered>
+        <Descriptions title="Thông tin user" bordered column={2}>
           <Descriptions.Item label="Id" span={2} copyable>
             {dataViewDetail._id}
           </Descriptions.Item>
-          <Descriptions.Item label="Tên sách">
-            {dataViewDetail.mainText}
+          <Descriptions.Item label="Email">
+            {dataViewDetail.email}
           </Descriptions.Item>
-          <Descriptions.Item label="Tác giả">
-            {dataViewDetail.author}
+          <Descriptions.Item label="Tên hiển thị">
+            {dataViewDetail.fullName}
           </Descriptions.Item>
-          <Descriptions.Item label="Giá tiền">
-            {dataViewDetail.price.toLocaleString()} đ
+          <Descriptions.Item label="Role">
+            <Tag color={dataViewDetail.role === "ADMIN" ? "red" : "blue"}>
+              {dataViewDetail.role}
+            </Tag>
           </Descriptions.Item>
-          <Descriptions.Item label="Thể loại">
-            {dataViewDetail.category}
+          <Descriptions.Item label="Số điện thoại">
+            {dataViewDetail.phone}
+          </Descriptions.Item>
+          <Descriptions.Item label="Avatar">
+            <Image
+              src={`${import.meta.env.VITE_BACKEND_URL}/images/avatar/${
+                dataViewDetail.avatar
+              }`}
+              width={80}
+              height={80}
+              style={{ objectFit: "cover", borderRadius: "50%" }}
+              preview
+            />
           </Descriptions.Item>
           <Descriptions.Item label="Created At">
             {new Date(dataViewDetail.createdAt).toLocaleDateString()}
@@ -49,28 +62,9 @@ const DetailUser: React.FC<DetailBookProps> = ({
           <Descriptions.Item label="Updated At">
             {new Date(dataViewDetail.updatedAt).toLocaleDateString()}
           </Descriptions.Item>
-          <Descriptions.Item label="Avatar">
-            {" "}
-            <Image.PreviewGroup
-              preview={{
-                onChange: (current, prev) =>
-                  console.log(`current index: ${current}, prev index: ${prev}`),
-              }}
-            >
-              <Image
-                width={200}
-                src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
-              />
-              <Image
-                width={200}
-                src="https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"
-              />
-            </Image.PreviewGroup>
-            fa
-          </Descriptions.Item>
         </Descriptions>
       ) : (
-        <p>Không có sách nào được chọn</p>
+        <p>Không có user nào được chọn</p>
       )}
     </Drawer>
   );
