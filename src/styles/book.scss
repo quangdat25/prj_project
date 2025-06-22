@@ -1,0 +1,110 @@
+/* =========================================== */
+/* CUSTOM CSS CHO PHẦN "SỐ LƯỢNG"             */
+/* =========================================== */
+
+.quantity-control-container {
+  display: flex; /* Dùng flexbox để các phần tử nằm ngang */
+  border: 1px solid #d9d9d9; /* Border chung cho toàn bộ khối */
+  border-radius: 2px; /* Bo góc nhẹ */
+  overflow: hidden; /* Quan trọng để các phần tử con không tràn ra ngoài border */
+  width: 120px; /* Điều chỉnh chiều rộng tổng thể của khối điều khiển */
+  height: 32px; /* Chiều cao của khối điều khiển, phù hợp với button Ant Design mặc định */
+}
+
+.quantity-button {
+  background: #fff; /* Nền trắng */
+  border: none; /* Không có border riêng cho button */
+  outline: none; /* Loại bỏ outline khi focus */
+  cursor: pointer;
+  width: 32px; /* Chiều rộng của mỗi nút */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* Loại bỏ padding mặc định */
+  color: rgba(0, 0, 0, 0.88); /* Màu icon */
+  font-size: 14px; /* Kích thước icon */
+}
+
+/* Thêm đường kẻ phân cách cho các nút */
+.quantity-button:first-child {
+  /* Nút trừ */
+  border-right: 1px solid #d9d9d9;
+}
+
+.quantity-button:last-child {
+  /* Nút cộng */
+  border-left: 1px solid #d9d9d9;
+}
+
+/* Style cho ô nhập số */
+.quantity-input {
+  flex-grow: 1; /* Cho phép input chiếm hết không gian còn lại */
+  text-align: center;
+  border: none; /* Không có border riêng cho input */
+  outline: none; /* Loại bỏ outline khi focus */
+  font-weight: 500; /* Độ đậm của số */
+  padding: 0 4px; /* Điều chỉnh padding nếu cần */
+  height: 100%; /* Chiếm toàn bộ chiều cao của container */
+  -moz-appearance: textfield; /* Ẩn mũi tên mặc định của input type="number" trên Firefox */
+}
+
+/* Ẩn mũi tên mặc định của input type="number" trên Chrome, Safari, Edge */
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Disabled state cho nút */
+.quantity-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5; /* Giảm độ mờ để hiển thị trạng thái disabled */
+}
+
+/* ==================================== */
+/* CUSTOME CSS CHO CÁC NÚT (Buttons)   */
+/* ==================================== */
+
+.add-to-cart-button.ant-btn {
+  background-color: #fff;
+  border-color: #ff4d4f;
+  color: #ff4d4f;
+  font-weight: bold;
+  height: 40px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-to-cart-button.ant-btn .anticon {
+  margin-right: 8px;
+}
+
+.cart-icon {
+  color: #ff4d4f;
+}
+
+.buy-now-button.ant-btn {
+  background-color: #f53d2d;
+  border-color: #f53d2d;
+  color: #fff;
+  font-weight: bold;
+  height: 40px;
+  padding: 0 20px;
+}
+
+/* Hover state cho các nút */
+.add-to-cart-button.ant-btn:hover,
+.add-to-cart-button.ant-btn:focus {
+  background-color: #fff !important;
+  border-color: #ff7875 !important;
+  color: #ff7875 !important;
+}
+
+.buy-now-button.ant-btn:hover,
+.buy-now-button.ant-btn:focus {
+  background-color: #ff4d4f !important;
+  border-color: #ff4d4f !important;
+  color: #fff !important;
+}

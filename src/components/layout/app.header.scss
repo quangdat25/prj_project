@@ -152,3 +152,98 @@
     }
   }
 }
+/* pop-cart-body: container chính của popover */
+.pop-cart-body {
+  width: 300px; /* Chiều rộng của popover, điều chỉnh theo ý muốn */
+  font-family: Arial, sans-serif; /* Font chữ chung */
+  color: #333; /* Màu chữ mặc định */
+}
+
+/* pop-cart-title: Tiêu đề "Sản phẩm mới thêm" */
+/* Bạn có thể thêm class này vào một div chứa tiêu đề nếu nó chưa có */
+.pop-cart-title {
+  padding: 10px 15px;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+  color: #555;
+}
+
+/* pop-cart-content: Phần chứa danh sách các sách */
+.pop-cart-content {
+  max-height: 250px; /* Giới hạn chiều cao và thêm cuộn nếu cần */
+  overflow-y: auto; /* Thêm thanh cuộn nếu nội dung quá dài */
+  padding: 10px 15px;
+}
+
+/* book: Mỗi sản phẩm sách */
+.book {
+  display: flex; /* Dùng flexbox để sắp xếp các thành phần ngang hàng */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  padding: 8px 0;
+  border-bottom: 1px solid #eee; /* Đường kẻ phân cách giữa các sách */
+}
+
+.book:last-child {
+  border-bottom: none; /* Bỏ đường kẻ cho sách cuối cùng */
+}
+
+.book img {
+  width: 50px; /* Kích thước ảnh thumbnail */
+  height: 50px;
+  object-fit: cover; /* Đảm bảo ảnh không bị méo */
+  margin-right: 10px;
+  border: 1px solid #eee; /* Border nhẹ cho ảnh */
+}
+
+.book > div:nth-child(2) {
+  /* Tên sách */
+  flex-grow: 1; /* Cho phép tên sách chiếm hết không gian còn lại */
+  margin-right: 10px;
+  font-size: 14px;
+  line-height: 1.3;
+  /* Giới hạn số dòng và thêm dấu ... nếu tên quá dài */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Giới hạn 2 dòng */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.book .price {
+  font-weight: bold;
+  color: #e54c3c; /* Màu đỏ cho giá */
+  white-space: nowrap; /* Tránh giá bị xuống dòng */
+  font-size: 14px;
+}
+
+/* pop-cart-footer: Phần chân của popover chứa nút "Xem giỏ hàng" */
+.pop-cart-footer {
+  padding: 15px;
+  border-top: 1px solid #eee;
+  text-align: right; /* Căn nút sang phải */
+}
+
+.pop-cart-footer button {
+  background-color: #e54c3c; /* Màu nền nút đỏ */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px; /* Bo tròn góc nút */
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.2s ease; /* Hiệu ứng khi hover */
+}
+
+.pop-cart-footer button:hover {
+  background-color: #cc3a2d; /* Màu đỏ đậm hơn khi hover */
+}
+
+/* Kiểu cho Empty component (nếu không có sản phẩm) */
+.ant-empty {
+  /* Hoặc bất kỳ class nào mà Empty component của Ant Design render ra */
+  padding: 20px;
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+}

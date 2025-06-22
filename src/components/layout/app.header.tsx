@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaReact } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { VscSearchFuzzy } from "react-icons/vsc";
-import { Divider, Badge, Drawer, Avatar, Popover } from "antd";
+import { Divider, Badge, Drawer, Avatar, Popover, Empty } from "antd";
 import { Dropdown, Space } from "antd";
 import { useNavigate } from "react-router";
 import "./app.header.scss";
@@ -13,7 +13,7 @@ import { logoutAccountAPI } from "services/api";
 const AppHeader = (props: any) => {
   const [openDrawer, setOpenDrawer] = useState(false);
 
-  const { isAuthenticated, user, setUser, setIsAuthenticated } =
+  const { isAuthenticated, user, setUser, setIsAuthenticated, carts } =
     useCurrentApp();
 
   const navigate = useNavigate();
@@ -64,28 +64,33 @@ const AppHeader = (props: any) => {
   const contentPopover = () => {
     return (
       <div className="pop-cart-body">
-        {/* <div className='pop-cart-content'>
-                    {carts?.map((book, index) => {
-                        return (
-                            <div className='book' key={`book-${index}`}>
-                                <img src={`${import.meta.env.VITE_BACKEND_URL}/images/book/${book?.detail?.thumbnail}`} />
-                                <div>{book?.detail?.mainText}</div>
-                                <div className='price'>
-                                    {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(book?.detail?.price ?? 0)}
-                                </div>
-                            </div>
-                        )
-                    })}
+        <div className="pop-cart-content">
+          {carts?.map((book, index) => {
+            return (
+              <div className="book" key={`book-${index}`}>
+                <img
+                  src={`${import.meta.env.VITE_BACKEND_URL}/images/book/${
+                    book?.detail?.thumbnail
+                  }`}
+                />
+                <div>{book?.detail?.mainText}</div>
+                <div className="price">
+                  {new Intl.NumberFormat("vi-VN", {
+                    style: "currency",
+                    currency: "VND",
+                  }).format(book?.detail?.price ?? 0)}
                 </div>
-                {carts.length > 0 ?
-                    <div className='pop-cart-footer'>
-                        <button onClick={() => navigate('/order')}>Xem giỏ hàng</button>
-                    </div>
-                    :
-                    <Empty
-                        description="Không có sản phẩm trong giỏ hàng"
-                    />
-                } */}
+              </div>
+            );
+          })}
+        </div>
+        {carts.length > 0 ? (
+          <div className="pop-cart-footer">
+            <button onClick={() => navigate("/order")}>Xem giỏ hàng</button>
+          </div>
+        ) : (
+          <Empty description="Không có sản phẩm trong giỏ hàng" />
+        )}
       </div>
     );
   };
@@ -134,7 +139,7 @@ const AppHeader = (props: any) => {
                 >
                   <Badge
                     // count={carts?.length ?? 0}
-                    count={10}
+                    count={carts?.length ?? 0}
                     size={"small"}
                     showZero
                   >

@@ -18,6 +18,11 @@ import ManageusePage from "pages/admin/manage.use.tsx";
 import DashBoardPage from "pages/admin/dashboard.tsx";
 import enUS from "antd/locale/en_US";
 import LayoutAdmin from "components/layout/layout.admin.tsx";
+import Bookpage from "pages/cilent/book.tsx";
+import OrderPage from "pages/cilent/auth/order.tsx";
+import Payment from "components/clinet/order/payment.tsx";
+import CompleteOrder from "components/clinet/order/complete.order.tsx";
+import History from "components/clinet/order/history.tsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,8 +33,40 @@ const router = createBrowserRouter([
         element: <Homepage />,
       },
       {
+        path: "/book/:id",
+        element: <Bookpage />,
+      },
+      {
+        path: "order",
+        element: (
+          <ProtectedRoute>
+            <OrderPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "payment",
+        element: (
+          <ProtectedRoute>
+            <Payment />,
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "last",
+        element: <CompleteOrder />,
+      },
+      {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "history",
+        element: (
+          <ProtectedRoute>
+            <History />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "register",
