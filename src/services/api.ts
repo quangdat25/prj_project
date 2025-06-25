@@ -79,28 +79,7 @@ export const uploadImageAPI = () => {
   const urlBackend = "/api/v1/file/upload";
   return axios.post<IBackendRes<IBookTable>>(urlBackend);
 };
-export const createNewBookAPI = (
-  _id: string,
-  mainText: string,
-  author: string,
-  price: number,
-  quantity: number,
-  category: string,
-  thumbnail: string,
-  slider: string
-) => {
-  const urlBackend = "/api/v1/book";
-  return axios.post<IBackendRes<IBookTable>>(urlBackend, {
-    _id,
-    mainText,
-    author,
-    price,
-    quantity,
-    category,
-    thumbnail,
-    slider,
-  });
-};
+
 export const getBookcategory = () => {
   const urlBackend = "/api/v1/database/category";
   return axios.get<IBackendRes<string[]>>(urlBackend);
@@ -146,4 +125,62 @@ export const createOrderAPI = (
 export const getOrderHistory = () => {
   const urlBackend = "/api/v1/history";
   return axios.get<IBackendRes<IHistory[]>>(urlBackend);
+};
+export const uploadFileAPI = (fileImg, folder) => {
+  const bodyFormData = new FormData();
+  bodyFormData.append("fileImg", fileImg);
+  return axios<
+    IBackendRes<{
+      fileUploaded: string;
+    }>
+  >({
+    method: "post",
+    url: "/api/v1/file/upload",
+    data: bodyFormData,
+    headers: {
+      "Content-Type": "multipart/form-data",
+      "upload-type": folder,
+    },
+  });
+};
+export const createBookAPI = (
+  mainText: string,
+  author: string,
+  price: number,
+  quantity: number,
+  category: string,
+  thumbnail: string,
+  slider: string[]
+) => {
+  const urlBackend = "/api/v1/book";
+  return axios.post<IBackendRes<IRegister>>(urlBackend, {
+    mainText,
+    author,
+    price,
+    quantity,
+    category,
+    thumbnail,
+    slider,
+  });
+};
+export const updateBookAPT = (
+  _id: string,
+  mainText: string,
+  author: string,
+  price: number,
+  quantity: number,
+  category: string,
+  thumbnail: string,
+  slider: string[]
+) => {
+  const urlBackend = "/api/v1/book/${_id}";
+  return axios.put<IBackendRes<IRegister>>(urlBackend, {
+    mainText,
+    author,
+    price,
+    quantity,
+    category,
+    thumbnail,
+    slider,
+  });
 };

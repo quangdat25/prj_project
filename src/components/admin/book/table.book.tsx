@@ -16,6 +16,7 @@ import { deleteBookAPI, getBookAPI } from "services/api";
 import { dateRangeValidate } from "services/helper";
 import DetailBook from "../book/detail.book";
 import Addnewbook from "./add.book";
+import UpdateBook from "./update.book";
 
 type TSearch = {
   _id: string;
@@ -37,6 +38,8 @@ const TableBook = () => {
   const [openDetail, setOpenDetail] = useState<boolean>(false);
   const [openComplete, setOpenComplete] = useState<boolean>(false);
   const [openAdd, setOpenAdd] = useState<boolean>(false);
+  const [openUpdate, setOpenUpdate] = useState<boolean>(false);
+  const [dataUpdate, setDataUpdate] = useState<IBookTable | null>(null);
   const refreshBook = () => {
     actionRef.current?.reload();
   };
@@ -122,6 +125,10 @@ const TableBook = () => {
             <EditTwoTone
               twoToneColor="#f57800"
               style={{ cursor: "pointer", marginRight: 15 }}
+              onClick={() => {
+                setOpenUpdate(true);
+                setDataUpdate(entity);
+              }}
             />
 
             <Popconfirm
@@ -221,6 +228,13 @@ const TableBook = () => {
         openAdd={openAdd}
         setOpenAdd={setOpenAdd}
         refreshBook={refreshBook}
+      />
+      <UpdateBook
+        openUpdate={openUpdate}
+        setOpenUpdate={setOpenUpdate}
+        refreshBook={refreshBook}
+        dataUpdate={dataUpdate}
+        setDataUpdate={setDataUpdate}
       />
     </>
   );

@@ -23,13 +23,14 @@ import OrderPage from "pages/cilent/auth/order.tsx";
 import Payment from "components/clinet/order/payment.tsx";
 import CompleteOrder from "components/clinet/order/complete.order.tsx";
 import History from "components/clinet/order/history.tsx";
+import DetailHistory from "components/clinet/order/detail.history.tsx";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
       {
-        index: true, // 👉 khi truy cập "/" sẽ render Homepage
+        index: true,
         element: <Homepage />,
       },
       {
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+      {
+        path: "detailhistory",
+        element: <DetailHistory />,
       },
       {
         path: "checkout",
